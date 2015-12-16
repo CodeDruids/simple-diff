@@ -1,7 +1,7 @@
 {
     "name": "codedruids/simple-diff",
     "description": "PHP class wrapper for simple diff operation.",
-    "license": "zlib/libpng",
+    "license": "zlib-libpng",
     "authors": [
         {
             "name": "Leith Caldwell",
