@@ -10,7 +10,7 @@ SimpleDiff is a PHP class wrapper for a simple diffing algorithm.
 
 ## Requirements
 
-* PHP 5.3 or higher
+* PHP 5.4 or higher
 
 ## Installation
 
