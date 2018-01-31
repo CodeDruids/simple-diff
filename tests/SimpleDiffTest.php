@@ -1,6 +1,8 @@
 <?php
 namespace CodeDruids\Tests;
 
+use Exception;
+use Throwable;
 use PHPUnit_Framework_TestCase as TestCase;
 use CodeDruids\SimpleDiff;
 
@@ -56,32 +58,6 @@ class SimpleDiffTest extends TestCase
         $diff = SimpleDiff::diff($old, $new);
 
         $this->assertEquals([], $diff);
-    }
-
-    /**
-     * @test
-     */
-    public function testDiffInvalidOld()
-    {
-        $this->setExpectedException('Exception', 'Invalid input - $old must be an array');
-
-        $old = 'some stuff';
-        $new = 'some other stuff';
-
-        $diff = SimpleDiff::diff($old, $new);
-    }
-
-    /**
-     * @test
-     */
-    public function testDiffInvalidNew()
-    {
-        $this->setExpectedException('Exception', 'Invalid input - $new must be an array');
-
-        $old = ['some', 'stuff'];
-        $new = 'some other stuff';
-
-        $diff = SimpleDiff::diff($old, $new);
     }
 
     /**

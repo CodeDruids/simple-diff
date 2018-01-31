@@ -1,8 +1,6 @@
 <?php
 namespace CodeDruids;
 
-use Exception;
-
 /**
  *  Paul's Simple Diff Algorithm v 0.1
  *  (C) Paul Butler 2007 <http://www.paulbutler.org/>
@@ -11,7 +9,7 @@ use Exception;
  *  Original by github/paulgb
  *  Includes fixes from github/angrychimp
  *  Class wrapper, updates, docs and tests by github/CodeDruids
-*/
+ */
 class SimpleDiff
 {
     /**
@@ -21,23 +19,17 @@ class SimpleDiff
      * @param  array $new  New array to compare against
      *
      * @return array       Original array, with differing elements replaced by an array showing deletions & insertions
-     *
-     * @throws Exception   When inputs are invalid
      */
-    public static function diff($old, $new)
+    public static function diff(array $old, array $new)
     {
         if (empty($old) && empty($new)) {
             return [];
         }
-        if (!is_array($old)) {
-            throw new Exception('Invalid input - $old must be an array');
-        }
-        if (!is_array($new)) {
-            throw new Exception('Invalid input - $new must be an array');
-        }
 
         $matrix = [];
         $maxlen = 0;
+        $omax = 0;
+        $nmax = 0;
         foreach ($old as $oindex => $ovalue) {
             $nkeys = array_keys($new, $ovalue);
             foreach ($nkeys as $nindex) {
