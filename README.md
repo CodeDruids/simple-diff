@@ -1,10 +1,10 @@
 # SimpleDiff
 
-[![Latest release](http://img.shields.io/github/release/CodeDruids/simple-diff.svg)](https://github.com/CodeDruids/hello-world-composer/releases)
+[![Latest release](http://img.shields.io/github/release/CodeDruids/simple-diff.svg)](https://github.com/CodeDruids/simple-diff/releases)
 [![Build Status](https://img.shields.io/travis/CodeDruids/simple-diff/master.svg)](https://travis-ci.org/CodeDruids/simple-diff)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/CodeDruids/simple-diff.svg)](https://scrutinizer-ci.com/g/CodeDruids/simple-diff/)
 [![Code Quality](https://img.shields.io/scrutinizer/g/CodeDruids/simple-diff.svg)](https://scrutinizer-ci.com/g/CodeDruids/simple-diff/)
-[![Software License](https://img.shields.io/badge/license-zlib%2Flibpng-blue.svg)](LICENSE)
+[![Software License](https://img.shields.io/badge/license-Zlib-blue.svg)](LICENSE)
 
 SimpleDiff is a PHP class wrapper for a simple diffing algorithm.
 
