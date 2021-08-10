@@ -61,16 +61,24 @@ class SimpleDiff
      *
      * @param  string $old  Original string to compare to
      * @param  string $new  New string to compare against
+     * @param  bool   $ws   Whether to include whitespace in diff
      *
      * @return string       Combination of both strings with <ins> and <del> tags to indicate differences
      */
-    public static function htmlDiff($old, $new)
-    {
+    public static function htmlDiff($old, $new, $ws = true) {
         $ret = '';
-        $diff = self::diff(
-            preg_split("/([\s]+)/", $old, null, PREG_SPLIT_DELIM_CAPTURE),
-            preg_split("/([\s]+)/", $new, null, PREG_SPLIT_DELIM_CAPTURE)
-        );
+        if ($ws) {
+            $diff = self::diff(
+                preg_split('/(\s+)/u', $old, null, PREG_SPLIT_DELIM_CAPTURE),
+                preg_split('/(\s+)/u', $new, null, PREG_SPLIT_DELIM_CAPTURE)
+            );
+        }
+        else {
+            $diff = self::diff(
+                preg_split('/\s+/u', $old),
+                preg_split('/\s+/u', $new)
+            );
+        }
         foreach ($diff as $k) {
             if (is_array($k)) {
                 foreach (['deleted', 'inserted'] as $v) {
@@ -79,13 +87,14 @@ class SimpleDiff
                         $$v = implode('', $k[$v]);
                         if ($$v != '') {
                             $tag = substr($v, 0, 3);
-                            $$v = "<$tag>".$$v."</$tag>";
+                            $$v = "<$tag>" . htmlspecialchars($$v) . "</$tag>" . ($ws ? '' : ' ');
                         }
                     }
                 }
-                $ret .= $deleted.$inserted;
-            } else {
-                $ret .= $k;
+                $ret .= $deleted . $inserted;
+            }
+            else {
+                $ret .= htmlspecialchars($k) . ($ws ? '' : ' ');
             }
         }
         return $ret;
