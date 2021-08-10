@@ -67,6 +67,7 @@ class SimpleDiff
      */
     public static function htmlDiff($old, $new, $ws = true) {
         $ret = '';
+        $spacer = '';
         if ($ws) {
             $diff = self::diff(
                 preg_split('/(\s+)/u', $old, null, PREG_SPLIT_DELIM_CAPTURE),
@@ -74,6 +75,7 @@ class SimpleDiff
             );
         }
         else {
+            $spacer = ' ';
             $diff = self::diff(
                 preg_split('/\s+/u', $old),
                 preg_split('/\s+/u', $new)
@@ -84,17 +86,17 @@ class SimpleDiff
                 foreach (['deleted', 'inserted'] as $v) {
                     $$v = '';
                     if (!empty($k[$v])) {
-                        $$v = implode('', $k[$v]);
+                        $$v = implode($spacer, $k[$v]);
                         if ($$v != '') {
                             $tag = substr($v, 0, 3);
-                            $$v = "<$tag>" . htmlspecialchars($$v) . "</$tag>" . ($ws ? '' : ' ');
+                            $$v = "<$tag>" . htmlspecialchars($$v) . "</$tag>$spacer";
                         }
                     }
                 }
                 $ret .= $deleted . $inserted;
             }
             else {
-                $ret .= htmlspecialchars($k) . ($ws ? '' : ' ');
+                $ret .= htmlspecialchars($k) . $spacer;
             }
         }
         return $ret;
